@@ -282,6 +282,80 @@ figure.part span{color:var(--mut)}
 footer{margin-top:84px;color:var(--mut);font-size:13px;border-top:1px solid var(--line);padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 @media (prefers-reduced-motion: reduce){#stage{cursor:default}}
 </style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Product",
+ "name": "Apollo",
+ "brand": {
+  "@type": "Brand",
+  "name": "YellowGrid audio lab"
+ },
+ "category": "Active loudspeaker",
+ "description": "Active two-way monitor pair with DSP preamp and 4x250 W Ncore amplification included. Purifi PTT6.5X04 woofer, SEAS DXT waveguide tweeter, four opposed Purifi passive radiators tuned to 30 Hz. F6 28 Hz anechoic. HDMI eARC input with CEC volume; Dirac Live ready. Full machining drawings and manufacturer datasheets published.",
+ "image": "https://apollo-speaker.onrender.com/",
+ "offers": {
+  "@type": "Offer",
+  "price": "5000",
+  "priceCurrency": "EUR",
+  "availability": "https://schema.org/PreOrder",
+  "itemCondition": "https://schema.org/NewCondition",
+  "description": "Per pair, complete system: two speakers, miniDSP Flex HT DSP preamp, SoundImpress 4x250 W Ncore amplifier, measured DSP calibration."
+ },
+ "additionalProperty": [
+  {
+   "@type": "PropertyValue",
+   "name": "Bass extension (F6, anechoic)",
+   "value": "28 Hz"
+  },
+  {
+   "@type": "PropertyValue",
+   "name": "Max SPL at 30 Hz per speaker",
+   "value": "104 dB"
+  },
+  {
+   "@type": "PropertyValue",
+   "name": "Amplification (included)",
+   "value": "4 x 250 W Hypex Ncore"
+  },
+  {
+   "@type": "PropertyValue",
+   "name": "Crossover",
+   "value": "DSP Linkwitz-Riley 24 dB/oct at 2.1 kHz"
+  },
+  {
+   "@type": "PropertyValue",
+   "name": "Input",
+   "value": "HDMI eARC (PCM), CEC volume; Dirac Live ready"
+  },
+  {
+   "@type": "PropertyValue",
+   "name": "Woofer",
+   "value": "Purifi PTT6.5X04-NAA-08"
+  },
+  {
+   "@type": "PropertyValue",
+   "name": "Tweeter",
+   "value": "SEAS 27TBCD/GB-DXT"
+  },
+  {
+   "@type": "PropertyValue",
+   "name": "Passive radiators",
+   "value": "4x Purifi PTT6.5PR-NA2-03, opposed side pairs, 30 Hz"
+  },
+  {
+   "@type": "PropertyValue",
+   "name": "Dimensions (W x H x D)",
+   "value": "210 x 380 x 330 mm"
+  },
+  {
+   "@type": "PropertyValue",
+   "name": "Included components retail value",
+   "value": "approx. EUR 3700"
+  }
+ ]
+}
+</script>
 <div class="wrap">
 <header class="hero">
   <div class="brand"><span class="sq"></span>YELLOWGRID <em>· audio lab</em>
@@ -290,7 +364,7 @@ footer{margin-top:84px;color:var(--mut);font-size:13px;border-top:1px solid var(
   <h1>Apollo<span class="dot">.</span></h1>
   <p class="sub" data-i18n="sub">An active two-way monitor framed by a clean 45° chamfer. Purifi bass, SEAS DXT waveguide, four opposed passive radiators, DSP brain with eARC — engineered for the wall beside the television, tuned for the bottom octave.</p>
   <div class="tagrow">
-    <span class="tag price" data-i18n="prTag"><b>€5,000</b> per pair</span>
+    <span class="tag price" data-i18n="prTag"><b>€5,000</b> per pair · complete active system</span>
     <span class="tag"><b>28 Hz</b> F6</span>
     <span class="tag"><b>0</b> ports</span>
     <span class="tag"><b>4 × 250 W</b> Ncore</span>
@@ -339,6 +413,12 @@ ${drawings}
     <tr><td data-i18n="rbind">Binding posts</td><td class="mono">Jantzen Audio 012-0170</td><td class="mono">4×2</td><td class="mono">Au · Ø8 · +/−</td></tr>
     <tr><td data-i18n="rcab">Cabinet</td><td class="mono">MDF 19 / 25 mm</td><td class="mono">2</td><td class="mono">210 × 380 × 330 · 14 L · 30 Hz</td></tr>
   </table></div>
+  <ul class="dsp">
+    <li data-i18n="v1"><b>Complete system:</b> both speakers plus the DSP preamp, the 4×250 W Ncore amplifier and a measured DSP calibration — nothing else to buy.</li>
+    <li data-i18n="v2"><b>Component value:</b> the drive units and electronics inside retail for roughly €3,700 on their own; every part number and datasheet is published above.</li>
+    <li data-i18n="v3"><b>Context:</b> the Buchardt E50 — a passive two-way on the same Purifi woofer platform — lists at €4,000 a pair, before any amplifier or DSP.</li>
+    <li data-i18n="v4"><b>Transparency:</b> full machining drawings, manufacturer datasheets and the crossover design are on this page — every claim can be checked.</li>
+  </ul>
 </section>
 
 <section>
@@ -650,7 +730,11 @@ const TR = {
        'Șase piese per incintă, MDF, îmbinate cap la cap și lipite. Rama teșită la 45° se taie pe panoul frontal înainte de asamblare și se oprește pe canturile lui — carcasa nu se frezează. Adâncimi de falț: woofer și radiatoare 4,5 mm, fața tweeterului 6 mm, cuva de conectori 12 mm.'],
   sb1: ['drag to rotate · auto-spins when idle', 'trage pentru rotire · se rotește singur în repaus'],
   bgw: ['White', 'Alb'],
-  prTag: ['<b>€5,000</b> per pair', '<b>5.000 €</b> perechea'],
+  prTag: ['<b>€5,000</b> per pair · complete active system', '<b>5.000 €</b> perechea · sistem activ complet'],
+  v1: ['<b>Complete system:</b> both speakers plus the DSP preamp, the 4×250 W Ncore amplifier and a measured DSP calibration — nothing else to buy.', '<b>Sistem complet:</b> ambele boxe plus preamplificatorul DSP, amplificatorul Ncore de 4×250 W și o calibrare DSP măsurată — nu mai e nimic de cumpărat.'],
+  v2: ['<b>Component value:</b> the drive units and electronics inside retail for roughly €3,700 on their own; every part number and datasheet is published above.', '<b>Valoarea componentelor:</b> difuzoarele și electronica din interior costă singure aproximativ 3.700 € în retail; fiecare cod de produs și fișă tehnică sunt publicate mai sus.'],
+  v3: ['<b>Context:</b> the Buchardt E50 — a passive two-way on the same Purifi woofer platform — lists at €4,000 a pair, before any amplifier or DSP.', '<b>Context:</b> Buchardt E50 — un sistem pasiv în două căi pe aceeași platformă de woofer Purifi — costă 4.000 € perechea, fără amplificator sau DSP.'],
+  v4: ['<b>Transparency:</b> full machining drawings, manufacturer datasheets and the crossover design are on this page — every claim can be checked.', '<b>Transparență:</b> desenele de execuție, fișele tehnice ale producătorilor și designul crossoverului sunt pe această pagină — orice afirmație poate fi verificată.'],
   drbare: ['Bare', 'Gol'],
   svBr: ['brace', 'rigidizare'],
   svBp: ['front face 72.5 mm behind the baffle', 'fața frontală la 72,5 mm în spatele panoului frontal'],
@@ -789,7 +873,7 @@ document.getElementById(b.dataset.tab).classList.add('on');
 <\/script>
 `;
 fs.mkdirSync('D:/claude/speakers/s400ish/site', { recursive: true });
-const page = '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n' +
+const page = '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<meta name="description" content="Apollo — active two-way monitor by YellowGrid audio lab. Purifi woofer, SEAS DXT waveguide, four passive radiators tuned to 30 Hz. DSP preamp and 4×250 W Ncore amplification included. €5,000 per pair, complete system. Full drawings and datasheets published.">\n' +
   out.replace(/^(<title>.*?<\/title>)/s, '$1\n</head>\n<body>') + '\n</body>\n</html>\n';
 fs.writeFileSync('D:/claude/speakers/s400ish/site/index.html', page);
 fs.writeFileSync('D:/claude/speakers/s400ish/site/facet_site.html', out);
