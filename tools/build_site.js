@@ -104,6 +104,12 @@ function makeSide() {
   o += diaV(g, cx, cy, r145, R + M0, '145');
   o += diaV(g, cx, cy, r176, R + M0 + GAP, '176');
   o += tx(px(8), oy - 16, 'FRONT', 0, 12) + ln(px(38), oy - 16, px(56), oy - 16, 0.8) + `<line x1="${px(56)}" y1="${oy - 16}" x2="${px(64)}" y2="${oy - 16}" stroke="${INKC}" stroke-width="0.8" marker-end="url(#da${g})"/>`;
+  o += ln(px(72.5), py(0), px(72.5), py(380), 0.7, '7 4');
+  o += ln(px(91.5), py(0), px(91.5), py(380), 0.7, '7 4');
+  o += dimH(g, oy - 16, px(0), px(72.5), '72.5', py(0));
+  o += ln(px(91.5), py(0), px(91.5), oy - 10, 0.4);
+  o += tx(px(82), oy - 20, '19', 0, 12);
+  o += tx(px(82), B + 22, 'brace', 0, 11.5);
   o += tx(cx, B + 62, '2×  (MIRRORED)', 0, 12);
   o += recessBlock(720, 120, [[176, 4.5]]);
   o += gridnote(g, 980, 648);
@@ -147,7 +153,7 @@ function makeBrace() {
   const g = 'br', s = 1.5, ox = 300, oy = 64;
   const px = mm => ox + mm * s, py = mm => oy + mm * s;
   const cx = px(86), R = px(172), rw = 65 * s;
-  let o = sheet(g, 980, 600, s);
+  let o = sheet(g, 980, 644, s);
   o += `<rect x="${px(0)}" y="${py(0)}" width="${172 * s}" height="${342 * s}" fill="${FACEC}" stroke="${INKC}" stroke-width="1.3"/>`;
   [91, 246].forEach(y => { o += clH(cx, py(y), rw) + ci(cx, py(y), rw); });
   o += clV(cx, py(0) - 12, py(342) + 12);
@@ -156,7 +162,8 @@ function makeBrace() {
   o += dimV(g, R + M0, py(0), py(91), '91', R);
   o += dimV(g, R + M0 + GAP, py(0), py(246), '246', R);
   o += diaV(g, cx, py(91), rw, R + M0 + GAP * 2, '130');
-  o += gridnote(g, 980, 600);
+  o += tx(cx, py(342) + 44, 'front face 72.5 mm behind the baffle', 0, 12);
+  o += gridnote(g, 980, 644);
   return o + '</svg>';
 }
 
@@ -635,6 +642,8 @@ const TR = {
   sb1: ['drag to rotate · auto-spins when idle', 'trage pentru rotire · se rotește singur în repaus'],
   bgw: ['White', 'Alb'],
   drbare: ['Bare', 'Gol'],
+  svBr: ['brace', 'rigidizare'],
+  svBp: ['front face 72.5 mm behind the baffle', 'fața frontală la 72,5 mm în spatele panoului frontal'],
   cmpT: ['Components', 'Componente'],
   cmpL: ['Everything in one Apollo system — drive units, radiators, electronics and hardware, single-sourced from SoundImports.', 'Tot ce intră într-un sistem Apollo — difuzoare, radiatoare, electronică și accesorii, toate de la SoundImports.'],
   thRole: ['Role', 'Rol'], thModel: ['Model', 'Model'], thQty: ['Qty', 'Buc'], thSpec: ['Key data', 'Date cheie'],
@@ -732,7 +741,7 @@ tagKey('<b>Body</b>', 'palB');
 [['01 · Baffle','c1t'],['02 · Side','c2t'],['03 · Back','c3t'],['04 · Top / Bottom','c4t'],['05 · Brace','c5t'],['06 · Chamfer','c6t']].forEach(p => tagKey(`<strong>${p[0]}</strong>`, p[1]));
 [['MDF 25 mm · qty 1 · 210 × 380','m1'],['MDF/ply 12 mm · qty 1 + spare','m2'],['MDF 19 mm · qty 2 mirrored · 286 × 380','m3'],['MDF 19 mm · qty 1 · 210 × 380','m4'],['MDF 19 mm · qty 2 · 172 × 286','m5'],['MDF 19 mm · qty 1 · 172 × 342','m6'],['baffle blank · before assembly','m7']].forEach(p => tagKey(`<span>${p[0]}</span>`, p[1]));
 tagKey('<p class="note">Swappable', 'n2');
-[['db1',TR.db1[0],false],['sv1',TR.sv1[0],false],['sv2',TR.sv2[0],true],['gridn',TR.gridn[0],true],['svA',TR.svA[0],false],['svB',TR.svB[0],false],['svC',TR.svC[0],false],['svD',TR.svD[0],false],['svE',TR.svE[0],false],['svP',TR.svP[0],false],['sv2b',TR.sv2b[0],false],['sv15',TR.sv15[0],false],['sv16',TR.sv16[0],false],['sv17',TR.sv17[0],false],['sv3',TR.sv3[0],false],['sv4',TR.sv4[0],false],['sv5',TR.sv5[0],false],['sv6',TR.sv6[0],false],['sv7',TR.sv7[0],true],['sv8',TR.sv8[0],false],['sv9',TR.sv9[0],false],['sv10',TR.sv10[0],false],['sv11',TR.sv11[0],false],['sv12',TR.sv12[0],false],['sv13',TR.sv13[0],false],['sv14',TR.sv14[0],false]].forEach(p => tagKey(`>${p[1]}</text>`, p[0], p[2]));
+[['db1',TR.db1[0],false],['sv1',TR.sv1[0],false],['sv2',TR.sv2[0],true],['gridn',TR.gridn[0],true],['svA',TR.svA[0],false],['svB',TR.svB[0],false],['svC',TR.svC[0],false],['svD',TR.svD[0],false],['svE',TR.svE[0],false],['svBr',TR.svBr[0],false],['svBp',TR.svBp[0],false],['svP',TR.svP[0],false],['sv2b',TR.sv2b[0],false],['sv15',TR.sv15[0],false],['sv16',TR.sv16[0],false],['sv17',TR.sv17[0],false],['sv3',TR.sv3[0],false],['sv4',TR.sv4[0],false],['sv5',TR.sv5[0],false],['sv6',TR.sv6[0],false],['sv7',TR.sv7[0],true],['sv8',TR.sv8[0],false],['sv9',TR.sv9[0],false],['sv10',TR.sv10[0],false],['sv11',TR.sv11[0],false],['sv12',TR.sv12[0],false],['sv13',TR.sv13[0],false],['sv14',TR.sv14[0],false]].forEach(p => tagKey(`>${p[1]}</text>`, p[0], p[2]));
 [['Bass-midwoofer','r1'],['Tweeter · DXT waveguide','r2'],['4× passive radiators, opposed','r3'],['DSP · eARC · CEC volume','r4']].forEach(p => tagKey(`<span>${p[0]}</span>`, p[1]));
 [['F6 anechoic','st1'],['max @ 30 Hz / speaker','st2'],['LR4 crossover, DSP','st3'],['latency — lip-sync safe','st4'],['system incl VAT','st5'],['radiator tuning · +47 g/cone','st6']].forEach(p => tagKey(`<i>${p[0]}</i>`, p[1]));
 tagKey('<span><span class="yel">■', 'foot');
