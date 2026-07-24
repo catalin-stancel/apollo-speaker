@@ -180,7 +180,7 @@ const TABDEFS = [
   ['03 · Back', 'MDF 19 mm · qty 1 · 210 × 380', makeBack, null],
   ['04 · Top / Bottom', 'MDF 19 mm · qty 2 · 172 × 286', makeTopBottom, null],
   ['05 · Brace', 'MDF 19 mm · qty 1 · 172 × 342', makeBrace, null],
-  ['06 · Facet operation', 'post-assembly · all 4 front edges', makeFacetOp, null],
+  ['06 · Chamfer', 'baffle blank · before assembly', makeFacetOp, null],
 ];
 const tabsBar = '<div class="tabs" role="tablist">' + TABDEFS.map((d, i) =>
   `<button class="tab" role="tab" data-tab="tp${i}" aria-selected="${i === 0 ? 'true' : 'false'}"><strong>${d[0]}</strong></button>`).join('') + '</div>';
@@ -249,6 +249,15 @@ figure.part img{width:100%;aspect-ratio:1;object-fit:cover;display:block;backgro
 figure.part figcaption{display:flex;flex-direction:column;gap:2px;padding:12px 14px 16px;font-size:12.5px}
 figure.part strong{font-size:13px;font-weight:600}
 figure.part span{color:var(--mut)}
+.cmp{width:100%;border-collapse:collapse;font-size:14px}
+.cmp th{font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mut);text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-weight:600}
+.cmp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.cmp td.mono{color:var(--yg)}
+.chain{background:var(--panel);border:1px solid var(--line);padding:16px 18px;font-size:14.5px;line-height:1.9;overflow-x:auto;white-space:nowrap;font-family:Consolas,ui-monospace,monospace}
+.chain b{color:var(--yg);font-weight:600}
+.dsp{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px}
+.dsp li{background:var(--panel);border:1px solid var(--line);padding:12px 16px;font-size:14px}
+.dsp li b{color:var(--yg);font-weight:600}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
 .stat{background:var(--panel);border:1px solid var(--line);padding:18px}
 .stat b{display:block;font-size:28px;font-weight:800;letter-spacing:-0.01em;color:var(--yg)}
@@ -262,7 +271,7 @@ footer{margin-top:84px;color:var(--mut);font-size:13px;border-top:1px solid var(
     <span class="langs"><button id="lEN" aria-pressed="true">EN</button><button id="lRO" aria-pressed="false">RO</button></span>
   </div>
   <h1>Apollo<span class="dot">.</span></h1>
-  <p class="sub" data-i18n="sub">An active two-way monitor with gem-cut geometry. Purifi bass, SEAS DXT waveguide, four opposed passive radiators, DSP brain with eARC — engineered for the wall beside the television, tuned for the bottom octave.</p>
+  <p class="sub" data-i18n="sub">An active two-way monitor framed by a clean 45° chamfer. Purifi bass, SEAS DXT waveguide, four opposed passive radiators, DSP brain with eARC — engineered for the wall beside the television, tuned for the bottom octave.</p>
   <div class="tagrow">
     <span class="tag"><b>28 Hz</b> F6</span>
     <span class="tag"><b>0</b> ports</span>
@@ -274,7 +283,7 @@ footer{margin-top:84px;color:var(--mut);font-size:13px;border-top:1px solid var(
 
 <section>
   <h2><span class="n">01</span> Cabinet</h2>
-  <p class="lede">Bare carcass with exact machining — every rebate at its real depth. Stone for the baffle and its facets, graphite for everything else. Drag to rotate; the slider opens the joinery: 25 mm baffle, 19 mm carcass, inset top and bottom, window brace, mirrored radiator rebates, four-post connector dish.</p>
+  <p class="lede">The cabinet, exactly as machined — every rebate at its real depth, a 45° chamfer framing the baffle. Pick the finish with the swatches; Fitted seats the drivers and terminals, Bare shows the joinery. Drag to rotate; the slider opens it: 25 mm baffle, 19 mm carcass, inset top and bottom, window brace, mirrored radiator rebates, four-post connector dish.</p>
   <div id="stage" role="img" aria-label="Interactive 3D model of the Apollo cabinet with explode control"></div>
   <div class="stagebar">
     <span>drag to rotate · auto-spins when idle</span>
@@ -290,7 +299,7 @@ footer{margin-top:84px;color:var(--mut);font-size:13px;border-top:1px solid var(
 
 <section>
   <h2><span class="n">02</span> Parts &amp; machining — all dimensions in mm</h2>
-  <p class="lede">Six parts per cabinet, MDF, butt-jointed and glued. Facets are cut after assembly so the creases run unbroken across baffle and carcass. Rebate depths: woofer and radiators 4.5 mm, tweeter face 6 mm, connector dish 12 mm.</p>
+  <p class="lede">Six parts per cabinet, MDF, butt-jointed and glued. The 45° chamfer frame is cut on the baffle blank before assembly and stops on its rim — the carcass is never milled. Rebate depths: woofer and radiators 4.5 mm, tweeter face 6 mm, connector dish 12 mm.</p>
 ${tabsBar}
   <div class="tpanes">
 ${drawings}
@@ -300,7 +309,36 @@ ${drawings}
 
 
 <section>
-  <h2><span class="n">03</span> System</h2>
+  <h2><span class="n">03</span> <span data-i18n="cmpT">Components</span></h2>
+  <p class="lede" data-i18n="cmpL">Everything in one Apollo system — drive units, radiators, electronics and hardware, single-sourced from SoundImports.</p>
+  <div style="overflow-x:auto"><table class="cmp">
+    <tr><th data-i18n="thRole">Role</th><th data-i18n="thModel">Model</th><th data-i18n="thQty">Qty</th><th data-i18n="thSpec">Key data</th></tr>
+    <tr><td data-i18n="rwoof">Bass-midwoofer</td><td class="mono">Purifi PTT6.5X04-NAA-08</td><td class="mono">2</td><td class="mono">6.5" · ±9.8 mm · 32 Hz · 4 Ω · 250 W</td></tr>
+    <tr><td data-i18n="rtw">Tweeter</td><td class="mono">SEAS 27TBCD/GB-DXT H1499-06</td><td class="mono">2</td><td class="mono">27 mm · DXT · 92 dB · 6 Ω</td></tr>
+    <tr><td data-i18n="rpr">Passive radiators</td><td class="mono">Purifi PTT6.5PR-NA2-03</td><td class="mono">4</td><td class="mono">±15 mm · 85 g + 47 g → 30 Hz</td></tr>
+    <tr><td data-i18n="rdsp">DSP preamp</td><td class="mono">miniDSP Flex HT</td><td class="mono">1</td><td class="mono">8×8 · HDMI eARC · IIR · Dirac-ready</td></tr>
+    <tr><td data-i18n="ramp">Power amplifier</td><td class="mono">SoundImpress HY252-4CH</td><td class="mono">1</td><td class="mono">Hypex NC252MP · 4×250 W / 4 Ω · 121 dB</td></tr>
+    <tr><td data-i18n="rbind">Binding posts</td><td class="mono">Jantzen Audio 012-0170</td><td class="mono">4×2</td><td class="mono">Au · Ø8 · +/−</td></tr>
+    <tr><td data-i18n="rcab">Cabinet</td><td class="mono">MDF 19 / 25 mm</td><td class="mono">2</td><td class="mono">210 × 380 × 330 · 14 L · 30 Hz</td></tr>
+  </table></div>
+</section>
+
+<section>
+  <h2><span class="n">04</span> <span data-i18n="conT">Signal chain &amp; DSP</span></h2>
+  <p class="lede" data-i18n="conL">One HDMI cable from the TV; the Flex HT is the brain — source switch, volume, crossover and room EQ — and the four-channel Hypex drives each voice coil directly.</p>
+  <div class="chain">LG G5 <b>—eARC (PCM)→</b> miniDSP Flex HT <b>—4× RCA→XLR→</b> SoundImpress HY252-4CH <b>—2×2 posts→</b> Apollo L/R</div>
+  <ul class="dsp">
+    <li data-i18n="d1"><b>Crossover:</b> Linkwitz–Riley 24 dB/oct at ≈2.1 kHz — high-pass to the DXT, low-pass to the Purifi, per channel.</li>
+    <li data-i18n="d2"><b>Protection:</b> ≈25 Hz high-pass on the woofer channels — caps radiator and cone excursion below the 30 Hz tuning.</li>
+    <li data-i18n="d3"><b>Alignment:</b> tweeter level trim ≈ −5 dB and per-output delay, set from REW measurements at the listening position.</li>
+    <li data-i18n="d4"><b>EQ:</b> driver linearisation on the outputs (10 biquads per channel), cut-only room correction on the inputs.</li>
+    <li data-i18n="d5"><b>Daily use:</b> Movie / Music / Night presets on the remote; volume from the TV remote over HDMI-CEC.</li>
+    <li data-i18n="d6"><b>Dirac Live:</b> the Flex HT takes the optional Dirac Live licence — full-range room correction layered on top of this crossover once the system is measured in place.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">05</span> System</h2>
   <div class="stats">
     <div class="stat"><b class="mono">28 Hz</b><i>F6 anechoic</i></div>
     <div class="stat"><b class="mono">103 dB</b><i>max @ 30 Hz / speaker</i></div>
@@ -580,23 +618,41 @@ if(window.ResizeObserver)new ResizeObserver(size).observe(stage);
 `;
 // ---------- i18n: EN default in markup, RO via dictionary ----------
 const TR = {
-  sub: ['An active two-way monitor with gem-cut geometry. Purifi bass, SEAS DXT waveguide, four opposed passive radiators, DSP brain with eARC — engineered for the wall beside the television, tuned for the bottom octave.',
-        'Un monitor activ în două căi cu geometrie de piatră șlefuită. Bas Purifi, ghid de undă SEAS DXT, patru radiatoare pasive opuse, creier DSP cu eARC — gândit pentru peretele de lângă televizor, acordat pentru octava de jos.'],
+  sub: ['An active two-way monitor framed by a clean 45° chamfer. Purifi bass, SEAS DXT waveguide, four opposed passive radiators, DSP brain with eARC — engineered for the wall beside the television, tuned for the bottom octave.',
+        'Un monitor activ în două căi, încadrat de o teșitură curată la 45°. Bas Purifi, ghid de undă SEAS DXT, patru radiatoare pasive opuse, creier DSP cu eARC — gândit pentru peretele de lângă televizor, acordat pentru octava de jos.'],
   tag2: ['<b>0</b> ports', '<b>0</b> porturi'],
   tag5: ['<b>14 L</b> · 30 Hz tuning', '<b>14 L</b> · acord 30 Hz'],
   s1: ['Cabinet', 'Incinta'],
   s2: ['Parts &amp; machining — all dimensions in mm', 'Piese și prelucrări — toate cotele în mm'],
   s3: ['Drive units &amp; electronics', 'Difuzoare și electronică'],
   s4: ['System', 'Sistem'],
-  l1: ['Bare carcass with exact machining — every rebate at its real depth. Stone for the baffle and its facets, graphite for everything else. Drag to rotate; the slider opens the joinery: 25 mm baffle, 19 mm carcass, inset top and bottom, window brace, mirrored radiator rebates, four-post connector dish.',
-       'Carcasă goală, cu prelucrări exacte — fiecare falț la adâncimea lui reală. Piatră pentru panoul frontal și fațete, grafit pentru rest. Trage pentru a roti; cursorul desface îmbinările: panou frontal de 25 mm, carcasă de 19 mm, capac și bază încastrate, rigidizare cu ferestre, falțuri oglindite pentru radiatoare, cuvă de conectori cu patru borne.'],
-  l2: ['Seven parts per cabinet, MDF, butt-jointed and glued. Facets are cut after assembly so the creases run unbroken across baffle and carcass. Rebate depths: woofer and radiators 4.5 mm, DXT face 6 mm in plate, connector dish 12 mm.',
-       'Șase piese per incintă, MDF, îmbinate cap la cap și lipite. Fațetele se taie după asamblare, astfel încât muchiile trec neîntrerupt peste panoul frontal și carcasă. Adâncimi de falț: woofer și radiatoare 4,5 mm, fața tweeterului 6 mm, cuva de conectori 12 mm.'],
+  l1: ['The cabinet, exactly as machined — every rebate at its real depth, a 45° chamfer framing the baffle. Pick the finish with the swatches; Fitted seats the drivers and terminals, Bare shows the joinery. Drag to rotate; the slider opens it: 25 mm baffle, 19 mm carcass, inset top and bottom, window brace, mirrored radiator rebates, four-post connector dish.',
+       'Incinta, exact cum e prelucrată — fiecare falț la adâncimea lui reală, cu o teșitură la 45° care încadrează panoul frontal. Alege finisajul din paletă; „Cu difuzoare” așază difuzoarele și bornele, „Gol” arată îmbinările. Trage pentru a roti; cursorul o desface: panou frontal de 25 mm, carcasă de 19 mm, capac și bază încastrate, rigidizare cu ferestre, falțuri oglindite pentru radiatoare, cuvă de conectori cu patru borne.'],
+  l2: ['Six parts per cabinet, MDF, butt-jointed and glued. The 45° chamfer frame is cut on the baffle blank before assembly and stops on its rim — the carcass is never milled. Rebate depths: woofer and radiators 4.5 mm, tweeter face 6 mm, connector dish 12 mm.',
+       'Șase piese per incintă, MDF, îmbinate cap la cap și lipite. Rama teșită la 45° se taie pe panoul frontal înainte de asamblare și se oprește pe canturile lui — carcasa nu se frezează. Adâncimi de falț: woofer și radiatoare 4,5 mm, fața tweeterului 6 mm, cuva de conectori 12 mm.'],
   l3: ['Single-source order, SoundImports, everything in stock 23 July 2026 — plus four pairs of Jantzen gold binding posts (~€23) for the connector dish.',
        'Comandă dintr-o singură sursă, SoundImports, totul în stoc la 23 iulie 2026 — plus patru perechi de borne aurite Jantzen (~23 €) pentru cuva de conectori.'],
   sb1: ['drag to rotate · auto-spins when idle', 'trage pentru rotire · se rotește singur în repaus'],
   bgw: ['White', 'Alb'],
   drbare: ['Bare', 'Gol'],
+  cmpT: ['Components', 'Componente'],
+  cmpL: ['Everything in one Apollo system — drive units, radiators, electronics and hardware, single-sourced from SoundImports.', 'Tot ce intră într-un sistem Apollo — difuzoare, radiatoare, electronică și accesorii, toate de la SoundImports.'],
+  thRole: ['Role', 'Rol'], thModel: ['Model', 'Model'], thQty: ['Qty', 'Buc'], thSpec: ['Key data', 'Date cheie'],
+  rwoof: ['Bass-midwoofer', 'Difuzor bas-mediu'],
+  rtw: ['Tweeter', 'Tweeter'],
+  rpr: ['Passive radiators', 'Radiatoare pasive'],
+  rdsp: ['DSP preamp', 'Preamplificator DSP'],
+  ramp: ['Power amplifier', 'Amplificator de putere'],
+  rbind: ['Binding posts', 'Borne'],
+  rcab: ['Cabinet', 'Incintă'],
+  conT: ['Signal chain &amp; DSP', 'Lanțul de semnal și DSP'],
+  conL: ['One HDMI cable from the TV; the Flex HT is the brain — source switch, volume, crossover and room EQ — and the four-channel Hypex drives each voice coil directly.', 'Un singur cablu HDMI de la televizor; Flex HT este creierul — surse, volum, crossover și corecția camerei — iar Hypex-ul cu patru canale conduce direct fiecare bobină.'],
+  d1: ['<b>Crossover:</b> Linkwitz–Riley 24 dB/oct at ≈2.1 kHz — high-pass to the DXT, low-pass to the Purifi, per channel.', '<b>Crossover:</b> Linkwitz–Riley 24 dB/oct la ≈2,1 kHz — trece-sus către DXT, trece-jos către Purifi, pe fiecare canal.'],
+  d2: ['<b>Protection:</b> ≈25 Hz high-pass on the woofer channels — caps radiator and cone excursion below the 30 Hz tuning.', '<b>Protecție:</b> trece-sus la ≈25 Hz pe canalele de bas — limitează excursia radiatoarelor și a conului sub acordul de 30 Hz.'],
+  d3: ['<b>Alignment:</b> tweeter level trim ≈ −5 dB and per-output delay, set from REW measurements at the listening position.', '<b>Aliniere:</b> atenuare tweeter ≈ −5 dB și întârziere pe ieșiri, stabilite din măsurători REW în poziția de ascultare.'],
+  d4: ['<b>EQ:</b> driver linearisation on the outputs (10 biquads per channel), cut-only room correction on the inputs.', '<b>EQ:</b> liniarizarea difuzoarelor pe ieșiri (10 biquad-uri pe canal), corecția camerei doar prin atenuare, pe intrări.'],
+  d5: ['<b>Daily use:</b> Movie / Music / Night presets on the remote; volume from the TV remote over HDMI-CEC.', '<b>Zi de zi:</b> presetări Film / Muzică / Noapte pe telecomandă; volumul din telecomanda televizorului, prin HDMI-CEC.'],
+  d6: ['<b>Dirac Live:</b> the Flex HT takes the optional Dirac Live licence — full-range room correction layered on top of this crossover once the system is measured in place.', '<b>Dirac Live:</b> Flex HT acceptă licența opțională Dirac Live — corecție de cameră pe tot spectrul, peste acest crossover, după măsurarea sistemului la locul lui.'],
   drfit: ['Fitted', 'Cu difuzoare'],
   gridn: ['grid = 10 mm', 'caroiaj = 10 mm'],
   svA: ['cut at tweeter axis', 'secțiune la axul tweeterului'],
@@ -611,17 +667,17 @@ const TR = {
   palB: ['Body', 'Corp'],
   c1t: ['01 · Baffle', '01 · Panou frontal'], c2t: ['02 · Side', '02 · Lateral'],
   c3t: ['03 · Back', '03 · Spate'], c4t: ['04 · Top / Bottom', '04 · Capac / Bază'],
-  c5t: ['05 · Brace', '05 · Rigidizare'], c6t: ['06 · Facet operation', '06 · Operația de fațetare'],
+  c5t: ['05 · Brace', '05 · Rigidizare'], c6t: ['06 · Chamfer', '06 · Teșitură'],
   m1: ['MDF 25 mm · qty 1 · 210 × 380', 'MDF 25 mm · buc 1 · 210 × 380'],
   m2: ['MDF/ply 12 mm · qty 1 + spare', 'MDF/placaj 12 mm · buc 1 + rezervă'],
   m3: ['MDF 19 mm · qty 2 mirrored · 286 × 380', 'MDF 19 mm · buc 2, oglindite · 286 × 380'],
   m4: ['MDF 19 mm · qty 1 · 210 × 380', 'MDF 19 mm · buc 1 · 210 × 380'],
   m5: ['MDF 19 mm · qty 2 · 172 × 286', 'MDF 19 mm · buc 2 · 172 × 286'],
   m6: ['MDF 19 mm · qty 1 · 172 × 342', 'MDF 19 mm · buc 1 · 172 × 342'],
-  m7: ['post-assembly · all 4 front edges', 'după asamblare · toate cele 4 muchii frontale'],
+  m7: ['baffle blank · before assembly', 'panoul frontal · înainte de asamblare'],
   n2: ['Swappable: a second plate machined for the Purifi WG147 drops into the same Ø150 recess.',
        'Interschimbabilă: o a doua placă, frezată pentru Purifi WG147, intră în același falț Ø150.'],
-  db1: ['dashed: facet creases — cut after assembly', 'punctat: muchiile fațetelor — tăiate după asamblare'],
+  db1: ['dashed: 45° chamfer frame — cut before assembly', 'punctat: rama teșită la 45° — tăiată înainte de asamblare'],
   sv1: ['rec Ø105×6 · thru Ø73', 'falț Ø105×6 · străpuns Ø73'],
   sv16: ['DXT face Ø104.2', 'fața DXT Ø104,2'],
   sv2: ['rec Ø176×4.5 · thru Ø145', 'falț Ø176×4,5 · străpuns Ø145'],
@@ -633,7 +689,7 @@ const TR = {
   sv5: ['Ø150 · t 12', 'Ø150 · g 12'],
   sv6: ['180 from FRONT edge', '180 de la muchia din FAȚĂ'],
   sv7: ['FRONT →', 'FAȚĂ →'],
-  sv8: ['qty 2, MIRRORED pair · front edge faceted after assembly', 'buc 2, pereche OGLINDITĂ · muchia frontală fațetată după asamblare'],
+  sv8: ['qty 2, MIRRORED pair', 'buc 2, pereche OGLINDITĂ'],
   sv9: ['dish Ø80×12', 'cuvă Ø80×12'],
   sv10: ['binding posts: top pair = tweeter, bottom pair = woofer', 'borne: perechea de sus = tweeter, cea de jos = woofer'],
   sv11: ['qty 2 · no machining · inset between sides', 'buc 2 · fără prelucrări · încastrat între laterale'],
@@ -666,15 +722,15 @@ out = out.replace('</span> Cabinet</h2>', '</span> <span data-i18n="s1">Cabinet<
 out = out.replace('</span> Parts &amp; machining — all dimensions in mm</h2>', '</span> <span data-i18n="s2">Parts &amp; machining — all dimensions in mm</span></h2>');
 out = out.replace('</span> Drive units &amp; electronics</h2>', '</span> <span data-i18n="s3">Drive units &amp; electronics</span></h2>');
 out = out.replace('</span> System</h2>', '</span> <span data-i18n="s4">System</span></h2>');
-tagKey('<p class="lede">Bare carcass', 'l1');
+tagKey('<p class="lede">The cabinet', 'l1');
 tagKey('<p class="lede">Six parts', 'l2');
 tagKey('<p class="lede">Single-source order', 'l3');
 tagKey('<span>drag to rotate · auto-spins when idle</span>', 'sb1');
 out = out.replace('gap:8px">explode <input', 'gap:8px"><span data-i18n="xpl">explode</span> <input');
 tagKey('<b>Baffle</b>', 'palA');
 tagKey('<b>Body</b>', 'palB');
-[['01 · Baffle','c1t'],['02 · Side','c2t'],['03 · Back','c3t'],['04 · Top / Bottom','c4t'],['05 · Brace','c5t'],['06 · Facet operation','c6t']].forEach(p => tagKey(`<strong>${p[0]}</strong>`, p[1]));
-[['MDF 25 mm · qty 1 · 210 × 380','m1'],['MDF/ply 12 mm · qty 1 + spare','m2'],['MDF 19 mm · qty 2 mirrored · 286 × 380','m3'],['MDF 19 mm · qty 1 · 210 × 380','m4'],['MDF 19 mm · qty 2 · 172 × 286','m5'],['MDF 19 mm · qty 1 · 172 × 342','m6'],['post-assembly · all 4 front edges','m7']].forEach(p => tagKey(`<span>${p[0]}</span>`, p[1]));
+[['01 · Baffle','c1t'],['02 · Side','c2t'],['03 · Back','c3t'],['04 · Top / Bottom','c4t'],['05 · Brace','c5t'],['06 · Chamfer','c6t']].forEach(p => tagKey(`<strong>${p[0]}</strong>`, p[1]));
+[['MDF 25 mm · qty 1 · 210 × 380','m1'],['MDF/ply 12 mm · qty 1 + spare','m2'],['MDF 19 mm · qty 2 mirrored · 286 × 380','m3'],['MDF 19 mm · qty 1 · 210 × 380','m4'],['MDF 19 mm · qty 2 · 172 × 286','m5'],['MDF 19 mm · qty 1 · 172 × 342','m6'],['baffle blank · before assembly','m7']].forEach(p => tagKey(`<span>${p[0]}</span>`, p[1]));
 tagKey('<p class="note">Swappable', 'n2');
 [['db1',TR.db1[0],false],['sv1',TR.sv1[0],false],['sv2',TR.sv2[0],true],['gridn',TR.gridn[0],true],['svA',TR.svA[0],false],['svB',TR.svB[0],false],['svC',TR.svC[0],false],['svD',TR.svD[0],false],['svE',TR.svE[0],false],['svP',TR.svP[0],false],['sv2b',TR.sv2b[0],false],['sv15',TR.sv15[0],false],['sv16',TR.sv16[0],false],['sv17',TR.sv17[0],false],['sv3',TR.sv3[0],false],['sv4',TR.sv4[0],false],['sv5',TR.sv5[0],false],['sv6',TR.sv6[0],false],['sv7',TR.sv7[0],true],['sv8',TR.sv8[0],false],['sv9',TR.sv9[0],false],['sv10',TR.sv10[0],false],['sv11',TR.sv11[0],false],['sv12',TR.sv12[0],false],['sv13',TR.sv13[0],false],['sv14',TR.sv14[0],false]].forEach(p => tagKey(`>${p[1]}</text>`, p[0], p[2]));
 [['Bass-midwoofer','r1'],['Tweeter · DXT waveguide','r2'],['4× passive radiators, opposed','r3'],['DSP · eARC · CEC volume','r4']].forEach(p => tagKey(`<span>${p[0]}</span>`, p[1]));
