@@ -96,11 +96,11 @@ footer{margin-top:84px;color:var(--mut);font-size:13px;border-top:1px solid var(
     <span data-i18n="sb1">drag to rotate · auto-spins when idle</span>
     <span style="display:flex;align-items:center;gap:8px"><span data-i18n="xpl">explode</span> <input id="xp" type="range" min="0" max="100" value="0" aria-label="Explode view"></span>
     <span style="display:flex;gap:8px"><button id="bgW" data-i18n="bgw" aria-pressed="true">White</button><button id="bgB" data-i18n="bgb" aria-pressed="false">Black</button></span>
-    <span style="display:flex;gap:8px"><button id="drBare" data-i18n="drbare" aria-pressed="true">Bare</button><button id="drFit" data-i18n="drfit" aria-pressed="false">Fitted</button></span>
+    <span style="display:flex;gap:8px"><button id="drBare" data-i18n="drbare" aria-pressed="false">Bare</button><button id="drFit" data-i18n="drfit" aria-pressed="true">Fitted</button></span>
   </div>
   <div class="palbar">
-    <div class="pal"><b data-i18n="palA">Baffle</b><span id="palBaffle"></span><input type="color" id="pickBaffle" value="#B3ADA3" aria-label="Custom baffle color"></div>
-    <div class="pal"><b data-i18n="palB">Body</b><span id="palBody"></span><input type="color" id="pickBody" value="#363A41" aria-label="Custom body color"></div>
+    <div class="pal"><b data-i18n="palA">Baffle</b><span id="palBaffle"></span><input type="color" id="pickBaffle" value="#7A3B32" aria-label="Custom baffle color"></div>
+    <div class="pal"><b data-i18n="palB">Body</b><span id="palBody"></span><input type="color" id="pickBody" value="#17181B" aria-label="Custom body color"></div>
   </div>
 </section>
 
@@ -379,7 +379,7 @@ mountDriver(gPosts,gR);
 (function(){var db=document.getElementById('drBare'),df=document.getElementById('drFit');
 function set(on){driverGroups.forEach(function(g){g.visible=on;});db.setAttribute('aria-pressed',String(!on));df.setAttribute('aria-pressed',String(on));try{localStorage.setItem('apolloDrivers',on?'1':'0');}catch(e){}}
 db.addEventListener('click',function(){set(false);});df.addEventListener('click',function(){set(true);});
-var v='0';try{v=localStorage.getItem('apolloDrivers')||'0';}catch(e){}set(v==='1');})();
+var v='1';try{v=localStorage.getItem('apolloDrivers')||'1';}catch(e){}set(v==='1');})();
 
 var root=new THREE.Group();
 [gF,gR,gL,gRt,gBr].forEach(function(g){root.add(g);});
@@ -415,7 +415,7 @@ b.addEventListener('click',function(){setCol(role,c);});
 box.appendChild(b);
 });
 document.getElementById('pick'+(role==='baffle'?'Baffle':'Body')).addEventListener('input',function(e){setCol(role,e.target.value);});
-setCol(role,saved[role]||PAL[role][0]);
+setCol(role,saved[role]||(role==='baffle'?'#7A3B32':'#17181B'));
 });
 var bW=document.getElementById('bgW'),bB=document.getElementById('bgB');
 function setBg(m){
