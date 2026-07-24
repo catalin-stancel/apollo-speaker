@@ -69,6 +69,9 @@ figure.part span{color:var(--mut)}
 .cmp th{font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mut);text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-weight:600}
 .cmp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
 .cmp td.mono{color:var(--yg)}
+.cmp a{color:var(--yg);text-decoration:none;border-bottom:1px dashed var(--yg)}
+.cmp a:hover{border-bottom-style:solid}
+.cmp a:focus-visible{outline:2px solid var(--yg);outline-offset:2px}
 .chain{background:var(--panel);border:1px solid var(--line);padding:16px 18px;font-size:14.5px;line-height:1.9;overflow-x:auto;white-space:nowrap;font-family:Consolas,ui-monospace,monospace}
 .chain b{color:var(--yg);font-weight:600}
 .dsp{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px}
@@ -176,9 +179,9 @@ footer{margin-top:84px;color:var(--mut);font-size:13px;border-top:1px solid var(
   <p class="lede" data-i18n="cmpL">Everything in one Apollo system — drive units, radiators, electronics and hardware, single-sourced from SoundImports.</p>
   <div style="overflow-x:auto"><table class="cmp">
     <tr><th data-i18n="thRole">Role</th><th data-i18n="thModel">Model</th><th data-i18n="thQty">Qty</th><th data-i18n="thSpec">Key data</th></tr>
-    <tr><td data-i18n="rwoof">Bass-midwoofer</td><td class="mono">Purifi PTT6.5X04-NAA-08</td><td class="mono">2</td><td class="mono">6.5" · ±9.8 mm · 32 Hz · 4 Ω · 250 W</td></tr>
-    <tr><td data-i18n="rtw">Tweeter</td><td class="mono">SEAS 27TBCD/GB-DXT H1499-06</td><td class="mono">2</td><td class="mono">27 mm · DXT · 92 dB · 6 Ω</td></tr>
-    <tr><td data-i18n="rpr">Passive radiators</td><td class="mono">Purifi PTT6.5PR-NA2-03</td><td class="mono">4</td><td class="mono">±15 mm · 85 g + 47 g → 30 Hz</td></tr>
+    <tr><td data-i18n="rwoof">Bass-midwoofer</td><td class="mono"><a href="docs/purifi-ptt6.5x04-naa-08.pdf" target="_blank" rel="noopener">Purifi PTT6.5X04-NAA-08 ↧</a></td><td class="mono">2</td><td class="mono">6.5" · ±9.8 mm · 32 Hz · 4 Ω · 250 W</td></tr>
+    <tr><td data-i18n="rtw">Tweeter</td><td class="mono"><a href="docs/seas-27tbcd-gb-dxt.pdf" target="_blank" rel="noopener">SEAS 27TBCD/GB-DXT H1499-06 ↧</a></td><td class="mono">2</td><td class="mono">27 mm · DXT · 92 dB · 6 Ω</td></tr>
+    <tr><td data-i18n="rpr">Passive radiators</td><td class="mono"><a href="docs/purifi-ptt6.5pr-na2-03.pdf" target="_blank" rel="noopener">Purifi PTT6.5PR-NA2-03 ↧</a></td><td class="mono">4</td><td class="mono">±15 mm · 85 g + 47 g → 30 Hz</td></tr>
     <tr><td data-i18n="rdsp">DSP preamp</td><td class="mono">miniDSP Flex HT</td><td class="mono">1</td><td class="mono">8×8 · HDMI eARC · IIR · Dirac-ready</td></tr>
     <tr><td data-i18n="ramp">Power amplifier</td><td class="mono">SoundImpress HY252-4CH</td><td class="mono">1</td><td class="mono">Hypex NC252MP · 4×250 W / 4 Ω · 121 dB</td></tr>
     <tr><td data-i18n="rbind">Binding posts</td><td class="mono">Jantzen Audio 012-0170</td><td class="mono">4×2</td><td class="mono">Au · Ø8 · +/−</td></tr>
