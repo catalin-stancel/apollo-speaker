@@ -1,0 +1,10 @@
+# Render Blueprint — Apollo static product site.
+# Standalone service; shares nothing with the gan-trading web service.
+services:
+  - type: web
+    name: apollo-speaker
+    runtime: static
+    staticPublishPath: ./public
+    # No buildCommand: public/index.html is prebuilt and fully self-contained
+    # (three.js + all images inlined; zero external requests).
+    pullRequestPreviewsEnabled: false
