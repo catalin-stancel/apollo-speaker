@@ -223,6 +223,7 @@ h1 .dot{color:var(--yg)}
 .tagrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
 .tag{border:1px solid var(--line);padding:5px 12px;font-size:12.5px;color:var(--mut)}
 .tag b{color:var(--yg);font-weight:600}
+.tag.price{border-color:var(--yg);font-size:13.5px}
 section{margin-top:78px}
 h2{display:flex;align-items:baseline;gap:12px;font-size:14px;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;margin:0 0 8px;padding-bottom:10px;border-bottom:1px solid var(--line)}
 h2 .n{color:var(--yg)}
@@ -289,6 +290,7 @@ footer{margin-top:84px;color:var(--mut);font-size:13px;border-top:1px solid var(
   <h1>Apollo<span class="dot">.</span></h1>
   <p class="sub" data-i18n="sub">An active two-way monitor framed by a clean 45° chamfer. Purifi bass, SEAS DXT waveguide, four opposed passive radiators, DSP brain with eARC — engineered for the wall beside the television, tuned for the bottom octave.</p>
   <div class="tagrow">
+    <span class="tag price" data-i18n="prTag"><b>€5,000</b> per pair</span>
     <span class="tag"><b>28 Hz</b> F6</span>
     <span class="tag"><b>0</b> ports</span>
     <span class="tag"><b>4 × 250 W</b> Ncore</span>
@@ -326,7 +328,7 @@ ${drawings}
 
 <section>
   <h2><span class="n">03</span> <span data-i18n="cmpT">Components</span></h2>
-  <p class="lede" data-i18n="cmpL">Everything in one Apollo system — drive units, radiators, electronics and hardware, single-sourced from SoundImports.</p>
+  <p class="lede" data-i18n="cmpL">Everything in one Apollo system — drive units, radiators, electronics and hardware.</p>
   <div style="overflow-x:auto"><table class="cmp">
     <tr><th data-i18n="thRole">Role</th><th data-i18n="thModel">Model</th><th data-i18n="thQty">Qty</th><th data-i18n="thSpec">Key data</th></tr>
     <tr><td data-i18n="rwoof">Bass-midwoofer</td><td class="mono"><a href="docs/purifi-ptt6.5x04-naa-08.pdf" target="_blank" rel="noopener">Purifi PTT6.5X04-NAA-08 ↧</a></td><td class="mono">2</td><td class="mono">6.5" · ±9.8 mm · 32 Hz · 4 Ω · 250 W</td></tr>
@@ -342,7 +344,7 @@ ${drawings}
 <section>
   <h2><span class="n">04</span> <span data-i18n="conT">Signal chain &amp; DSP</span></h2>
   <p class="lede" data-i18n="conL">One HDMI cable from the TV; the Flex HT is the brain — source switch, volume, crossover and room EQ — and the four-channel Hypex drives each voice coil directly.</p>
-  <div class="chain">LG G5 <b>—eARC (PCM)→</b> miniDSP Flex HT <b>—4× RCA→XLR→</b> SoundImpress HY252-4CH <b>—2×2 posts→</b> Apollo L/R</div>
+  <div class="chain">TV <b>—eARC (PCM)→</b> miniDSP Flex HT <b>—4× RCA→XLR→</b> SoundImpress HY252-4CH <b>—2×2 posts→</b> Apollo L/R</div>
   <ul class="dsp">
     <li data-i18n="d1"><b>Crossover:</b> Linkwitz–Riley 24 dB/oct at ≈2.1 kHz — high-pass to the DXT, low-pass to the Purifi, per channel.</li>
     <li data-i18n="d2"><b>Protection:</b> ≈25 Hz high-pass on the woofer channels — caps radiator and cone excursion below the 30 Hz tuning.</li>
@@ -360,7 +362,7 @@ ${drawings}
     <div class="stat"><b class="mono">103 dB</b><i>max @ 30 Hz / speaker</i></div>
     <div class="stat"><b class="mono">2.1 kHz</b><i>LR4 crossover, DSP</i></div>
     <div class="stat"><b class="mono">1–2 ms</b><i>latency — lip-sync safe</i></div>
-    <div class="stat"><b class="mono">€3,700</b><i>system incl VAT</i></div>
+    <div class="stat"><b class="mono">eARC</b><i>one cable from the TV</i></div>
     <div class="stat"><b class="mono">30 Hz</b><i>radiator tuning · +47 g/cone</i></div>
   </div>
 </section>
@@ -646,15 +648,14 @@ const TR = {
        'Incinta, exact cum e prelucrată — fiecare falț la adâncimea lui reală, cu o teșitură la 45° care încadrează panoul frontal. Alege finisajul din paletă; „Cu difuzoare” așază difuzoarele și bornele, „Gol” arată îmbinările. Trage pentru a roti; cursorul o desface: panou frontal de 25 mm, carcasă de 19 mm, capac și bază încastrate, rigidizare cu ferestre, falțuri oglindite pentru radiatoare, cuvă de conectori cu patru borne.'],
   l2: ['Six parts per cabinet, MDF, butt-jointed and glued. The 45° chamfer frame is cut on the baffle blank before assembly and stops on its rim — the carcass is never milled. Rebate depths: woofer and radiators 4.5 mm, tweeter face 6 mm, connector dish 12 mm.',
        'Șase piese per incintă, MDF, îmbinate cap la cap și lipite. Rama teșită la 45° se taie pe panoul frontal înainte de asamblare și se oprește pe canturile lui — carcasa nu se frezează. Adâncimi de falț: woofer și radiatoare 4,5 mm, fața tweeterului 6 mm, cuva de conectori 12 mm.'],
-  l3: ['Single-source order, SoundImports, everything in stock 23 July 2026 — plus four pairs of Jantzen gold binding posts (~€23) for the connector dish.',
-       'Comandă dintr-o singură sursă, SoundImports, totul în stoc la 23 iulie 2026 — plus patru perechi de borne aurite Jantzen (~23 €) pentru cuva de conectori.'],
   sb1: ['drag to rotate · auto-spins when idle', 'trage pentru rotire · se rotește singur în repaus'],
   bgw: ['White', 'Alb'],
+  prTag: ['<b>€5,000</b> per pair', '<b>5.000 €</b> perechea'],
   drbare: ['Bare', 'Gol'],
   svBr: ['brace', 'rigidizare'],
   svBp: ['front face 72.5 mm behind the baffle', 'fața frontală la 72,5 mm în spatele panoului frontal'],
   cmpT: ['Components', 'Componente'],
-  cmpL: ['Everything in one Apollo system — drive units, radiators, electronics and hardware, single-sourced from SoundImports.', 'Tot ce intră într-un sistem Apollo — difuzoare, radiatoare, electronică și accesorii, toate de la SoundImports.'],
+  cmpL: ['Everything in one Apollo system — drive units, radiators, electronics and hardware.', 'Tot ce intră într-un sistem Apollo — difuzoare, radiatoare, electronică și accesorii.'],
   thRole: ['Role', 'Rol'], thModel: ['Model', 'Model'], thQty: ['Qty', 'Buc'], thSpec: ['Key data', 'Date cheie'],
   rwoof: ['Bass-midwoofer', 'Difuzor bas-mediu'],
   rtw: ['Tweeter', 'Tweeter'],
@@ -722,7 +723,7 @@ const TR = {
   st2: ['max @ 30 Hz / speaker', 'maxim @ 30 Hz / boxă'],
   st3: ['LR4 crossover, DSP', 'crossover LR4, în DSP'],
   st4: ['latency — lip-sync safe', 'latență — sincron perfect cu imaginea'],
-  st5: ['system incl VAT', 'sistem, cu TVA'],
+  st5: ['one cable from the TV', 'un singur cablu de la televizor'],
   st6: ['radiator tuning · +47 g/cone', 'acord radiatoare · +47 g/con'],
   foot: ['<span class="yel">■</span> YELLOWGRID audio lab · Apollo',
          '<span class="yel">■</span> YELLOWGRID audio lab · Apollo'],
@@ -742,7 +743,6 @@ out = out.replace('</span> Drive units &amp; electronics</h2>', '</span> <span d
 out = out.replace('</span> System</h2>', '</span> <span data-i18n="s4">System</span></h2>');
 tagKey('<p class="lede">The cabinet', 'l1');
 tagKey('<p class="lede">Six parts', 'l2');
-tagKey('<p class="lede">Single-source order', 'l3');
 tagKey('<span>drag to rotate · auto-spins when idle</span>', 'sb1');
 out = out.replace('gap:8px">explode <input', 'gap:8px"><span data-i18n="xpl">explode</span> <input');
 tagKey('<b>Baffle</b>', 'palA');
@@ -752,7 +752,7 @@ tagKey('<b>Body</b>', 'palB');
 tagKey('<p class="note">Swappable', 'n2');
 [['db1',TR.db1[0],false],['sv1',TR.sv1[0],false],['sv2',TR.sv2[0],true],['gridn',TR.gridn[0],true],['svA',TR.svA[0],false],['svB',TR.svB[0],false],['svC',TR.svC[0],false],['svD',TR.svD[0],false],['svE',TR.svE[0],false],['svBr',TR.svBr[0],false],['svBp',TR.svBp[0],false],['svP',TR.svP[0],false],['sv2b',TR.sv2b[0],false],['sv15',TR.sv15[0],false],['sv16',TR.sv16[0],false],['sv17',TR.sv17[0],false],['sv3',TR.sv3[0],false],['sv4',TR.sv4[0],false],['sv5',TR.sv5[0],false],['sv6',TR.sv6[0],false],['sv7',TR.sv7[0],true],['sv8',TR.sv8[0],false],['sv9',TR.sv9[0],false],['sv10',TR.sv10[0],false],['sv11',TR.sv11[0],false],['sv12',TR.sv12[0],false],['sv13',TR.sv13[0],false],['sv14',TR.sv14[0],false]].forEach(p => tagKey(`>${p[1]}</text>`, p[0], p[2]));
 [['Bass-midwoofer','r1'],['Tweeter · DXT waveguide','r2'],['4× passive radiators, opposed','r3'],['DSP · eARC · CEC volume','r4']].forEach(p => tagKey(`<span>${p[0]}</span>`, p[1]));
-[['F6 anechoic','st1'],['max @ 30 Hz / speaker','st2'],['LR4 crossover, DSP','st3'],['latency — lip-sync safe','st4'],['system incl VAT','st5'],['radiator tuning · +47 g/cone','st6']].forEach(p => tagKey(`<i>${p[0]}</i>`, p[1]));
+[['F6 anechoic','st1'],['max @ 30 Hz / speaker','st2'],['LR4 crossover, DSP','st3'],['latency — lip-sync safe','st4'],['one cable from the TV','st5'],['radiator tuning · +47 g/cone','st6']].forEach(p => tagKey(`<i>${p[0]}</i>`, p[1]));
 tagKey('<span><span class="yel">■', 'foot');
 const dict = { en: {}, ro: {} };
 Object.keys(TR).forEach(k => { dict.en[k] = TR[k][0]; dict.ro[k] = TR[k][1]; });
