@@ -280,6 +280,7 @@ footer{margin-top:84px;color:var(--mut);font-size:13px;border-top:1px solid var(
     <span>drag to rotate · auto-spins when idle</span>
     <span style="display:flex;align-items:center;gap:8px">explode <input id="xp" type="range" min="0" max="100" value="0" aria-label="Explode view"></span>
     <span style="display:flex;gap:8px"><button id="bgW" data-i18n="bgw" aria-pressed="true">White</button><button id="bgB" data-i18n="bgb" aria-pressed="false">Black</button></span>
+    <span style="display:flex;gap:8px"><button id="drBare" data-i18n="drbare" aria-pressed="true">Bare</button><button id="drFit" data-i18n="drfit" aria-pressed="false">Fitted</button></span>
   </div>
   <div class="palbar">
     <div class="pal"><b>Baffle</b><span id="palBaffle"></span><input type="color" id="pickBaffle" value="#B3ADA3" aria-label="Custom baffle color"></div>
@@ -433,12 +434,90 @@ var botM=new THREE.Mesh(new THREE.BoxGeometry(1.72,0.19,2.86),matGraph);
 botM.position.set(0,-1.805,-0.03);
 var brace=panel([[-0.86,1.71],[0.86,1.71],[0.86,-1.71],[-0.86,-1.71]],[[0,-0.75,0.65],[0,0.80,0.65]],0.19,matGraph);
 brace.position.z=0.485;gBr.add(brace);
+// ---- drivers: procedural, datasheet-dimensioned; canonical frame = facing +Z ----
+// All rotations are baked into geometry (rotateX) so groups only translate/rotate as wholes.
+function dlathe(prof,mat,seg){
+var geo=new THREE.LatheGeometry(prof.map(function(p){return new THREE.Vector2(p[0],p[1]);}),seg||72);
+geo.rotateX(Math.PI/2);
+return new THREE.Mesh(geo,mat);
+}
+function dcyl(r,h,zc,mat){
+var geo=new THREE.CylinderGeometry(r,r,h,48);
+geo.rotateX(Math.PI/2);
+var m=new THREE.Mesh(geo,mat);m.position.z=zc;return m;
+}
+function dring2(ri,ro,zc,mat){var m=new THREE.Mesh(new THREE.RingGeometry(ri,ro,72),mat);m.position.z=zc;return m;}
+var dCone=new THREE.MeshStandardMaterial({color:0x3b3d40,roughness:0.55,metalness:0.15,side:THREE.DoubleSide});
+var dSurr=new THREE.MeshStandardMaterial({color:0x141416,roughness:0.92,side:THREE.DoubleSide});
+var dBlk =new THREE.MeshStandardMaterial({color:0x1b1d20,roughness:0.6,metalness:0.1,side:THREE.DoubleSide});
+var dDome=new THREE.MeshStandardMaterial({color:0x3c4045,roughness:0.85,side:THREE.DoubleSide});
+var dPR  =new THREE.MeshPhysicalMaterial({color:0x161719,roughness:0.45,clearcoat:0.35,clearcoatRoughness:0.35,side:THREE.DoubleSide});
+var dMag =new THREE.MeshStandardMaterial({color:0x5a2226,roughness:0.55,metalness:0.25});
+var dChr =new THREE.MeshStandardMaterial({color:0xcfd3d8,roughness:0.3,metalness:0.9});
+[dCone,dSurr,dBlk,dDome,dPR,dMag,dChr].forEach(function(m){m.color.convertSRGBToLinear();});
+var driverGroups=[];
+function mountDriver(g,panel){g.visible=false;driverGroups.push(g);panel.add(g);}
+
+// SEAS DXT: faceplate O104.2 x 6 flush, DXT lens flare, fabric dome, rear can O72
+(function(){var g=new THREE.Group();g.name='drv_tweeter';
+g.add(dlathe([[0.13,-0.068],[0.145,-0.068],[0.20,-0.055],[0.30,-0.030],[0.42,-0.002],[0.5245,-0.002],[0.5245,-0.060]],dBlk));
+g.add(dlathe([[0,-0.040],[0.05,-0.046],[0.09,-0.056],[0.13,-0.068]],dDome,48));
+g.add(dcyl(0.36,0.50,-0.31,dBlk));
+g.position.set(0,0.90,1.652);mountDriver(g,gF);})();
+
+// Purifi PTT6.5X04: flange O176 flush, corrugated surround, fiber cone, raised dome cap,
+// basket frustum, maroon ring + black magnet stack (build-in ~85)
+(function(){var g=new THREE.Group();g.name='drv_woofer';
+g.add(dring2(0.725,0.879,0.002,dBlk));
+g.add(dlathe([[0.725,0.002],[0.700,0.020],[0.672,0.008],[0.645,0.024],[0.618,0.010],[0.590,0.018],[0.565,0.010]],dSurr));
+g.add(dlathe([[0.565,0.010],[0.44,-0.075],[0.30,-0.150],[0.185,-0.205]],dCone));
+g.add(dlathe([[0.185,-0.205],[0.145,-0.150],[0.09,-0.098],[0,-0.072]],dCone,64));
+g.add(dlathe([[0.86,-0.030],[0.74,-0.130],[0.56,-0.320],[0.50,-0.430]],dBlk));
+g.add(dcyl(0.50,0.14,-0.50,dMag));
+g.add(dcyl(0.50,0.28,-0.71,dBlk));
+g.position.set(0,-0.75,1.650);mountDriver(g,gF);})();
+
+// Purifi PTT6.5PR: convex satin dome, corrugated surround, shallow basket, M6 mass plug
+function makePR(){var g=new THREE.Group();
+g.add(dring2(0.725,0.879,0.002,dBlk));
+g.add(dlathe([[0.725,0.002],[0.700,0.020],[0.672,0.008],[0.645,0.024],[0.618,0.010],[0.590,0.024]],dSurr));
+g.add(dlathe([[0.590,0.024],[0.565,0.012],[0.44,-0.062],[0.30,-0.125],[0.185,-0.170]],dPR));
+g.add(dlathe([[0.185,-0.170],[0.145,-0.120],[0.09,-0.075],[0,-0.050]],dPR,64));
+g.add(dlathe([[0.86,-0.030],[0.72,-0.10],[0.56,-0.20],[0.50,-0.26]],dBlk));
+g.add(dcyl(0.10,0.16,-0.30,dChr));
+return g;}
+(function(){var r=makePR();r.name='drv_pr_R';r.rotation.y=Math.PI/2;r.position.set(1.052,0.05,-0.40);mountDriver(r,gRt);
+var l=makePR();l.name='drv_pr_L';l.rotation.y=-Math.PI/2;l.position.set(-1.052,0.05,-0.40);mountDriver(l,gL);})();
+
+// Jantzen gold binding posts: 4x through the dish floor (top pair tweeter, bottom woofer)
+var dGold=new THREE.MeshStandardMaterial({color:0xC8A24A,roughness:0.32,metalness:0.85});
+var dRed =new THREE.MeshStandardMaterial({color:0x8a1f1f,roughness:0.5,metalness:0.1});
+dGold.color.convertSRGBToLinear();dRed.color.convertSRGBToLinear();
+(function(){
+function makePost(ringMat){var p=new THREE.Group();
+p.add(dcyl(0.065,0.030,-0.015,dGold));
+p.add(dcyl(0.045,0.100,-0.080,dGold));
+p.add(dcyl(0.055,0.025,-0.140,ringMat));
+p.add(dcyl(0.050,0.030,-0.170,dGold));
+return p;}
+var gPosts=new THREE.Group();gPosts.name='drv_posts';
+[[0.18,0.15,dRed],[-0.18,0.15,dBlk],[0.18,-0.15,dRed],[-0.18,-0.15,dBlk]].forEach(function(q){
+var p=makePost(q[2]);p.position.set(q[0],q[1],0);gPosts.add(p);});
+gPosts.position.set(0,-1.40,-1.53);
+mountDriver(gPosts,gR);
+})();
+
+(function(){var db=document.getElementById('drBare'),df=document.getElementById('drFit');
+function set(on){driverGroups.forEach(function(g){g.visible=on;});db.setAttribute('aria-pressed',String(!on));df.setAttribute('aria-pressed',String(on));try{localStorage.setItem('apolloDrivers',on?'1':'0');}catch(e){}}
+db.addEventListener('click',function(){set(false);});df.addEventListener('click',function(){set(true);});
+var v='0';try{v=localStorage.getItem('apolloDrivers')||'0';}catch(e){}set(v==='1');})();
+
 var root=new THREE.Group();
 [gF,gR,gL,gRt,gBr].forEach(function(g){root.add(g);});
 root.add(topM);root.add(botM);
 root.rotation.set(0.1,-0.5,0);root.position.y=-0.05;
 root.traverse(function(m){if(m.isMesh){m.castShadow=true;m.receiveShadow=true;}});
-scene.add(root);
+scene.add(root);window.__root=root;
 var t=0;
 function applyX(){gF.position.z=1.5*t;gR.position.z=-1.3*t;gL.position.x=-1.4*t;gRt.position.x=1.4*t;gBr.position.z=0.5*t;topM.position.y=1.805+1.1*t;botM.position.y=-1.805-1.1*t;}
 document.getElementById('xp').addEventListener('input',function(e){t=e.target.value/100;applyX();});
@@ -517,6 +596,8 @@ const TR = {
        'Comandă dintr-o singură sursă, SoundImports, totul în stoc la 23 iulie 2026 — plus patru perechi de borne aurite Jantzen (~23 €) pentru cuva de conectori.'],
   sb1: ['drag to rotate · auto-spins when idle', 'trage pentru rotire · se rotește singur în repaus'],
   bgw: ['White', 'Alb'],
+  drbare: ['Bare', 'Gol'],
+  drfit: ['Fitted', 'Cu difuzoare'],
   gridn: ['grid = 10 mm', 'caroiaj = 10 mm'],
   svA: ['cut at tweeter axis', 'secțiune la axul tweeterului'],
   svB: ['Ø73 thru', 'Ø73 străpuns'],
