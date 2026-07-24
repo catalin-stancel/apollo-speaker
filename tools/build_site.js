@@ -81,7 +81,12 @@ function makeBaffle() {
   o += diaV(g, cx, wY, r145, R + M0, '145');
   o += diaV(g, cx, wY, r176, R + M0 + GAP, '176');
   // keyhole slots
-  o += dimH(g, tY - 45 * s - 20, cx - 8.5 * s, cx + 8.5 * s, '17', tY - 45 * s);
+  (function(){var y = tY - 45 * s - 20, e = 8.5 * s;
+  o += ln(cx - e, tY - 45 * s, cx - e, y - 6, 0.4) + ln(cx + e, tY - 45 * s, cx + e, y - 6, 0.4);
+  o += `<line x1="${cx - e - 26}" y1="${y}" x2="${cx - e}" y2="${y}" stroke="${INKC}" stroke-width="0.6" marker-end="url(#da${g})"/>`;
+  o += `<line x1="${cx + e + 26}" y1="${y}" x2="${cx + e}" y2="${y}" stroke="${INKC}" stroke-width="0.6" marker-end="url(#da${g})"/>`;
+  o += `<text x="${cx + e + 32}" y="${y + 4}" fill="${INKC}" font-size="13.5" font-family="Consolas,ui-monospace,monospace">17</text>`;
+})();
   o += dimV(g, cx - r105 - 24, tY - 45 * s, tY + 45 * s, '90', cx - r105);
   o += recessBlock(88, 616, [[105, 6], [176, 4.5]]);
   o += gridnote(g, 980, 690);
@@ -103,7 +108,8 @@ function makeSide() {
   o += dimH(g, B + 34, px(0), cx, '180', B);
   o += diaV(g, cx, cy, r145, R + M0, '145');
   o += diaV(g, cx, cy, r176, R + M0 + GAP, '176');
-  o += tx(px(8), oy - 16, 'FRONT', 0, 12) + ln(px(38), oy - 16, px(56), oy - 16, 0.8) + `<line x1="${px(56)}" y1="${oy - 16}" x2="${px(64)}" y2="${oy - 16}" stroke="${INKC}" stroke-width="0.8" marker-end="url(#da${g})"/>`;
+  o += tx(px(46), py(22), 'FRONT', 0, 12);
+  o += `<line x1="${px(20)}" y1="${py(22) - 4}" x2="${px(6)}" y2="${py(22) - 4}" stroke="${INKC}" stroke-width="0.8" marker-end="url(#da${g})"/>`;
   o += ln(px(72.5), py(0), px(72.5), py(380), 0.7, '7 4');
   o += ln(px(91.5), py(0), px(91.5), py(380), 0.7, '7 4');
   o += dimH(g, oy - 16, px(0), px(72.5), '72.5', py(0));
@@ -700,7 +706,7 @@ const TR = {
   sv17: ['terminal slots 2× 17 wide, thru', 'sloturi terminale 2× lățime 17, străpunse'],
   sv5: ['Ø150 · t 12', 'Ø150 · g 12'],
   sv6: ['180 from FRONT edge', '180 de la muchia din FAȚĂ'],
-  sv7: ['FRONT →', 'FAȚĂ →'],
+  sv7: ['FRONT', 'FAȚĂ'],
   sv8: ['qty 2, MIRRORED pair', 'buc 2, pereche OGLINDITĂ'],
   sv9: ['dish Ø80×12', 'cuvă Ø80×12'],
   sv10: ['binding posts: top pair = tweeter, bottom pair = woofer', 'borne: perechea de sus = tweeter, cea de jos = woofer'],
