@@ -347,11 +347,6 @@ footer{margin-top:84px;color:var(--mut);font-size:13px;border-top:1px solid var(
    "@type": "PropertyValue",
    "name": "Dimensions (W x H x D)",
    "value": "210 x 380 x 330 mm"
-  },
-  {
-   "@type": "PropertyValue",
-   "name": "Included components retail value",
-   "value": "approx. EUR 3700"
   }
  ]
 }
@@ -415,7 +410,6 @@ ${drawings}
   </table></div>
   <ul class="dsp">
     <li data-i18n="v1"><b>Complete system:</b> both speakers plus the DSP preamp, the 4×250 W Ncore amplifier and a measured DSP calibration — nothing else to buy.</li>
-    <li data-i18n="v2"><b>Component value:</b> the drive units and electronics inside retail for roughly €3,700 on their own; every part number and datasheet is published above.</li>
     <li data-i18n="v3"><b>Context:</b> the Buchardt E50 — a passive two-way on the same Purifi woofer platform — lists at €4,000 a pair, before any amplifier or DSP.</li>
     <li data-i18n="v4"><b>Transparency:</b> full machining drawings, manufacturer datasheets and the crossover design are on this page — every claim can be checked.</li>
   </ul>
@@ -732,7 +726,6 @@ const TR = {
   bgw: ['White', 'Alb'],
   prTag: ['<b>€5,000</b> per pair · complete active system', '<b>5.000 €</b> perechea · sistem activ complet'],
   v1: ['<b>Complete system:</b> both speakers plus the DSP preamp, the 4×250 W Ncore amplifier and a measured DSP calibration — nothing else to buy.', '<b>Sistem complet:</b> ambele boxe plus preamplificatorul DSP, amplificatorul Ncore de 4×250 W și o calibrare DSP măsurată — nu mai e nimic de cumpărat.'],
-  v2: ['<b>Component value:</b> the drive units and electronics inside retail for roughly €3,700 on their own; every part number and datasheet is published above.', '<b>Valoarea componentelor:</b> difuzoarele și electronica din interior costă singure aproximativ 3.700 € în retail; fiecare cod de produs și fișă tehnică sunt publicate mai sus.'],
   v3: ['<b>Context:</b> the Buchardt E50 — a passive two-way on the same Purifi woofer platform — lists at €4,000 a pair, before any amplifier or DSP.', '<b>Context:</b> Buchardt E50 — un sistem pasiv în două căi pe aceeași platformă de woofer Purifi — costă 4.000 € perechea, fără amplificator sau DSP.'],
   v4: ['<b>Transparency:</b> full machining drawings, manufacturer datasheets and the crossover design are on this page — every claim can be checked.', '<b>Transparență:</b> desenele de execuție, fișele tehnice ale producătorilor și designul crossoverului sunt pe această pagină — orice afirmație poate fi verificată.'],
   drbare: ['Bare', 'Gol'],
